@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // frontend/src/app/insights/page.tsx
 'use client';
 
@@ -48,7 +49,7 @@ export default function DataInsightsPage() {
         if (!balanceDurRes.ok) throw new Error(balanceDurData.detail || 'Gagal mengambil data sampel saldo/durasi.');
 
         // Pastikan data numerik valid sebelum disimpan ke state
-        const cleanedBalanceDurData = balanceDurData.map((item: any) => ({
+        const cleanedBalanceDurData = balanceDurData.map((item: BalanceDurationSampleData) => ({
           ...item,
           balance: typeof item.balance === 'number' && !isNaN(item.balance) ? item.balance : 0, // Fallback ke 0 jika NaN
           duration: typeof item.duration === 'number' && !isNaN(item.duration) ? item.duration : 0, // Fallback ke 0 jika NaN
