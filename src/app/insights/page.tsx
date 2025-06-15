@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 // frontend/src/app/insights/page.tsx
 'use client';
 
@@ -207,18 +206,18 @@ export default function DataInsightsPage() {
                 tick={{ fill: 'var(--color-text-main)', fontSize: '0.9rem' }} 
                 label={{ value: 'Durasi Panggilan (detik)', angle: -90, position: 'insideLeft', fill: 'var(--color-text-light)' }} 
               />
-              <ZAxis dataKey="y" range={[60, 400]} name="Status" /> {/* Ukuran titik berdasarkan status, range disesuaikan */}
+                            <ZAxis dataKey="y" range={[60, 400]} name="Status" /> {/* Ukuran titik berdasarkan status, range disesuaikan */}
               <Tooltip 
-                cursor={{ strokeDasharray: '3 3' }} 
-                formatter={(value: number, name: string, props: any) => {
-                    if (name === 'balance') return [`${value.toLocaleString()} €`, 'Saldo'];
-                    if (name === 'duration') return [`${value.toLocaleString()} s`, 'Durasi'];
-                    if (name === 'y_label') return [props.payload.y_label, 'Status Langganan']; // Tampilkan label yang sudah diterjemahkan
-                    return [value.toLocaleString(), name];
-                }}
-                contentStyle={{ background: 'var(--brand-dark-blue)', borderColor: 'var(--color-accent-main)', color: 'white', borderRadius: '8px', padding: '10px' }}
-                itemStyle={{ color: 'white' }}
-                labelStyle={{ color: 'white', fontWeight: 'bold' }}
+              cursor={{ strokeDasharray: '3 3' }} 
+              formatter={(value: number, name: string, props: any) => {
+                if (name === 'balance') return [`${value.toLocaleString()} €`, 'Saldo'];
+                if (name === 'duration') return [`${value.toLocaleString()} s`, 'Durasi'];
+                if (name === 'y_label') return [props.payload.y_label, 'Status Langganan']; // Tampilkan label yang sudah diterjemahkan
+                return [value.toLocaleString(), name];
+              }}
+              contentStyle={{ background: 'var(--brand-dark-blue)', borderColor: 'var(--color-accent-main)', color: 'white', borderRadius: '8px', padding: '10px' }}
+              itemStyle={{ color: 'white' }}
+              labelStyle={{ color: 'white', fontWeight: 'bold' }}
               />
               <Legend wrapperStyle={{ paddingTop: '20px', color: 'var(--color-text-main)', fontSize: '0.9rem' }} />
               <Scatter data={balanceDurationSample} dataKey="y_label" name="Status Langganan">
