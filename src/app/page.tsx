@@ -64,13 +64,13 @@ export default function Home() {
     setPredictionResult(null);
 
     // Filter formData untuk memastikan semua nilai numerik adalah number atau diubah ke 0 jika string kosong
-    // Bagian ini sengaja menggunakan 'any' untuk stabilitas saat ini, sesuai permintaan Anda.
-    const submissionData = { ...formData };
+    // Gunakan Record<string, string | number> untuk menghindari penggunaan 'any'
+    const submissionData: Record<string, string | number> = { ...formData };
     // Daftar field numerik
     const numericFields = ['age', 'balance', 'duration', 'campaign', 'pdays', 'previous'];
     for (const key of numericFields) {
-      if ((submissionData as any)[key] === '') { 
-        (submissionData as any)[key] = 0; 
+      if (submissionData[key] === '') { 
+        submissionData[key] = 0; 
       }
     }
 
